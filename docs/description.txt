@@ -1,0 +1,4 @@
+Egy gumis műhely által tárolt gumi abroncsok vagy komplett kerekek tárolását összegyüjtő "leltár" program. 
+Részletes informáciokat fog tárolni mind az ügyfélről mind a garnitúráról. Lesz benne beépített keresés. 
+Továbbfejlesztési lehetőség pl.: a raktár tulajdonságainak elmentésével a program ki tudná számolni, hogy hány garnitúrát
+lehet még tárolni. Vagy az elmentett ügyféladatok alapján egy tárolási nyilatkozat elmentése vagy nyomtatása?

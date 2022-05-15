@@ -1,0 +1,14 @@
+
+
+1. fázis
+    - 1 lépés : osztályok (ügyfél, tárolt garnitúra) létrehozása, megírása
+    - 2 lépés : az app alap logikájának elkészítése
+
+2. fázis
+    - 1 lépés : kereső logika elkészítése
+    - 2 lépés : alap logika tovább fejlesztése, hibák javítása
+
+3. fázis
+    - 1 lépés : raktár kapacitás és kezeléshez szükséges osztályok létrehozása
+    - 2 lépés : alap logika tovább fejlesztése, hibák javítása
+

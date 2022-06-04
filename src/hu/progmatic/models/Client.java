@@ -22,6 +22,15 @@ public class Client {
         this.email = email;
     }
 
+    public Client(String csv, boolean isCSV) {
+        String[] parts = csv.split(";");
+        this.id = parts[0];
+        this.name = parts[1];
+        this.address = parts[2];
+        this.phoneNumber = parts[3];
+        this.email = parts[4];
+    }
+
     public String getId() {
         return id;
     }

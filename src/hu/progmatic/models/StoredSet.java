@@ -8,6 +8,9 @@ public class StoredSet {
     private String fleetInfo;
     private String paidUntil;
 
+    public StoredSet() {
+    }
+
     public StoredSet(Client client, TyreSet tyreSet, boolean isFleet, String paidUntil) {
         this.client = client;
         this.tyreSet = tyreSet;

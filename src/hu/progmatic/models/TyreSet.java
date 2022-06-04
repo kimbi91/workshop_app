@@ -5,7 +5,7 @@ public class TyreSet {
     private Client owner;
     private boolean isWheel;
     private String brand;
-    private int treadDepht;
+    private double treadDepht;
     private boolean isSummerTread;
     private int numOfTyresInSet;
     private String damages;
@@ -13,7 +13,7 @@ public class TyreSet {
     public TyreSet() {
     }
 
-    public TyreSet(Client owner, boolean isWheel, String brand, int treadDepht, boolean isSummerTread, int numOfTyresInSet, String damages) {
+    public TyreSet(Client owner, boolean isWheel, String brand, double treadDepht, boolean isSummerTread, int numOfTyresInSet, String damages) {
         this.owner = owner;
         this.isWheel = isWheel;
         this.brand = brand;
@@ -47,11 +47,11 @@ public class TyreSet {
         this.brand = brand;
     }
 
-    public int getTreadDepht() {
+    public double getTreadDepht() {
         return treadDepht;
     }
 
-    public void setTreadDepht(int treadDepht) {
+    public void setTreadDepht(double treadDepht) {
         this.treadDepht = treadDepht;
     }
 

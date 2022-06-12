@@ -1,7 +1,11 @@
 package hu.progmatic;
 
 
-import hu.progmatic.models.Controller;
+import hu.progmatic.models.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -10,6 +14,9 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
+        List<Client> savedClientData = new ArrayList<>();
+        List<TyreSet> savedTyreSetData = new ArrayList<>();
+        List<StoredSet> savedStoredSetData = new ArrayList<>();
 
 
         while (true) {
@@ -18,8 +25,25 @@ public class Main {
             if (command.equalsIgnoreCase("exit")) {
                 break;
             }
-            Controller.chooseCommand(command);
+
+            List<SavedData> newData;
+
+            switch (command.toLowerCase(Locale.ROOT)) {
+                case "help" -> Controller.helpCommand();
+                case "create" -> {
+                    newData = Controller.createCommand();
+                    Controller.sortNewData(savedClientData, savedTyreSetData, savedStoredSetData, newData);
+                }
+                case "read" -> Controller.readCommand();
+                case "update" -> Controller.updateCommand();
+                case "delete" -> Controller.deleteCommand();
+                default -> System.out.println("Ismeretlen parancs!");
+            }
         }
+
+        System.out.println(savedClientData.size());
+        System.out.println(savedTyreSetData.size());
+        System.out.println(savedStoredSetData.size());
 
         System.out.println("Viszlát!");
 

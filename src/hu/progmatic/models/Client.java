@@ -2,7 +2,7 @@ package hu.progmatic.models;
 
 import java.util.Objects;
 
-public class Client {
+public class Client implements SavedData{
 
     private final String id;
     private String name;

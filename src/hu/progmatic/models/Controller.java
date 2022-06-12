@@ -3,26 +3,11 @@ package hu.progmatic.models;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 public class Controller {
 
-    public static void chooseCommand(String command) {
-
-        switch (command.toLowerCase(Locale.ROOT)) {
-            case "help" -> helpCommand();
-            case "create" -> createCommand();
-            case "read" -> readCommand();
-            case "update" -> updateCommand();
-            case "delete" -> deleteCommand();
-            default -> System.out.println("Ismeretlen parancs!");
-        }
-    }
-
-    private static void helpCommand() {
+    public static void helpCommand() {
         System.out.println(
                 """
                         Lehetséges parancsok:
@@ -35,40 +20,69 @@ public class Controller {
         );
     }
 
-    private static void createCommand() {
-        // stringben tombben elmentem a parametereket amit vissza adok es utanna valami masik metodus szetszedi
+    public static List<SavedData> createCommand() {
 
         Scanner sc = new Scanner(System.in);
         Client newClient = new Client(createNewClientId());
         TyreSet newTyreSet = new TyreSet();
         StoredSet newStoredSet = new StoredSet();
+        List<SavedData> newData = new ArrayList<>();
 
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 13; i++) {
             if (i < 4) {
                 System.out.println("Kérem az ügyfél " + getClientFieldName(i));
                 String data = sc.nextLine();
                 setCorrectClientField(i, newClient, data);
-            } else if (4 <= i && i < 11) {
-                // TODO
-                // garnitura fieldjeit beállító metódus
+            } else if (i < 10) {
+                newTyreSet.setOwner(newClient);
+                System.out.println(getTyreSetFieldNameQuestion(i));
+                String data = sc.nextLine();
+                setCorrectTyreSetField(i, newTyreSet, data);
             } else {
-                // TODO
-                // tárolás adatait beállító metódus
+                newStoredSet.setClient(newClient);
+                newStoredSet.setTyreSet(newTyreSet);
+                System.out.println(getStoredSetQuestion(i));
+                String data = sc.nextLine();
+                setCorrectStoredSetField(i, newStoredSet, data);
             }
         }
 
+        newData.add(newClient);
+        newData.add(newTyreSet);
+        newData.add(newStoredSet);
+
+        return newData;
     }
 
-    private static void readCommand() {
+    public static void sortNewData(List<Client> clientList, List<TyreSet> tyreSetList, List<StoredSet> storedSetList, List<SavedData> newData) {
+
+        Iterator<SavedData> itr = newData.iterator();
+        int index = 0;
+
+        while (itr.hasNext()) {
+            SavedData current = itr.next();
+
+            //TODO
+            // ki kell találni hogy megy ez xD
+
+
+            itr.next();
+            itr.remove();
+        }
+
+
+    }
+
+    public static void readCommand() {
         System.out.println("READ");
     }
 
-    private static void updateCommand() {
+    public static void updateCommand() {
         System.out.println("UPDATE");
     }
 
-    private static void deleteCommand() {
+    public static void deleteCommand() {
         System.out.println("DELETE");
     }
 
@@ -85,10 +99,10 @@ public class Controller {
             e.printStackTrace();
         }
 
-        if (clients.size() > index) {
-            return clients.get(index);
-        } else if (index == -1) {
+        if (index == -1) {
             return clients.get(clients.size() - 1);
+        } else if (clients.size() > index) {
+            return clients.get(index);
         } else {
             return null;
         }
@@ -129,6 +143,27 @@ public class Controller {
         };
     }
 
+    private static String getTyreSetFieldNameQuestion(int number) {
+        return switch (number) {
+            case 4 -> "Komplett kerék? (i/n)";
+            case 5 -> "Mi a gumi márkája?";
+            case 6 -> "Mekkora a minta mélysége?";
+            case 7 -> "Nyári gumi? (i/n)";
+            case 8 -> "Hány gumi/kerék tartozik a garnitúrához?";
+            case 9 -> "Írja le ha található valami sérülés a garnitúrán!";
+            default -> "Kérem a következő adatot";
+        };
+    }
+
+    private static String getStoredSetQuestion(int number) {
+        return switch (number) {
+            case 10 -> "Flottakezelt? (i/n)";
+            case 11 -> "Ha flotta kezelt kérem adja meg a flotta nevét! (ha nem üssön entert)";
+            case 12 -> "Meddig van fizetve a tárolás?";
+            default -> "Kérem a következő adatot";
+        };
+    }
+
     private static void setCorrectClientField(int number, Client client, String data) {
         switch (number) {
             case 0 -> client.setName(data);
@@ -136,6 +171,33 @@ public class Controller {
             case 2 -> client.setPhoneNumber(data);
             case 3 -> client.setEmail(data);
             default -> System.out.println("Hiba történt!");
+        }
+    }
+
+    private static void setCorrectTyreSetField(int number, TyreSet tyreSet, String data) {
+        switch (number) {
+            case 4 -> tyreSet.setWheel(data.equalsIgnoreCase("i"));
+            case 5 -> tyreSet.setBrand(data);
+            case 6 -> tyreSet.setTreadDepht(Double.parseDouble(data));
+            case 7 -> tyreSet.setSummerTread(data.equalsIgnoreCase("i"));
+            case 8 -> tyreSet.setNumOfTyresInSet(Integer.parseInt(data));
+            case 9 -> tyreSet.setDamages(data);
+        }
+    }
+
+    private static void setCorrectStoredSetField(int number, StoredSet storedSet, String data) {
+        switch (number) {
+            case 10:
+                storedSet.setFleet(data.equalsIgnoreCase("i"));
+                break;
+            case 11:
+                if (data.length() > 0) {
+                    storedSet.setFleetInfo(data);
+                }
+                break;
+            case 12:
+                storedSet.setPaidUntil(data);
+                break;
         }
     }
 }

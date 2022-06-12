@@ -1,6 +1,6 @@
 package hu.progmatic.models;
 
-public class TyreSet {
+public class TyreSet implements SavedData{
 
     private Client owner;
     private boolean isWheel;
@@ -78,4 +78,5 @@ public class TyreSet {
     public void setDamages(String damages) {
         this.damages = damages;
     }
+
 }

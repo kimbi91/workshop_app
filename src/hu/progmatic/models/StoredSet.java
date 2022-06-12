@@ -1,6 +1,6 @@
 package hu.progmatic.models;
 
-public class StoredSet {
+public class StoredSet implements SavedData{
 
     private Client client;
     private TyreSet tyreSet;

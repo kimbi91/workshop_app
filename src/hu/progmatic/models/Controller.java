@@ -22,7 +22,7 @@ public class Controller {
         }
     }
 
-    public static void helpCommand() {
+    private static void helpCommand() {
         System.out.println(
                 """
                         Lehetséges parancsok:
@@ -35,7 +35,7 @@ public class Controller {
         );
     }
 
-    public static void createCommand() {
+    private static void createCommand() {
         // stringben tombben elmentem a parametereket amit vissza adok es utanna valami masik metodus szetszedi
 
         Scanner sc = new Scanner(System.in);
@@ -60,19 +60,19 @@ public class Controller {
 
     }
 
-    public static void readCommand() {
+    private static void readCommand() {
         System.out.println("READ");
     }
 
-    public static void updateCommand() {
+    private static void updateCommand() {
         System.out.println("UPDATE");
     }
 
-    public static void deleteCommand() {
+    private static void deleteCommand() {
         System.out.println("DELETE");
     }
 
-    public static Client getClient(int index) {
+    private static Client getClient(int index) {
         List<Client> clients = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader("docs/Clients.txt"))){
@@ -94,7 +94,7 @@ public class Controller {
         }
     }
 
-    public static String createNewClientId() {
+    private static String createNewClientId() {
         Client lastClient = getClient(-1);
         String id;
         String[] idParts = new  String[5];
@@ -119,7 +119,7 @@ public class Controller {
         }
     }
 
-    public static String getClientFieldName(int number) {
+    private static String getClientFieldName(int number) {
         return switch (number) {
             case 0 -> "nevét";
             case 1 -> "címét";
@@ -129,7 +129,7 @@ public class Controller {
         };
     }
 
-    public static void setCorrectClientField(int number, Client client, String data) {
+    private static void setCorrectClientField(int number, Client client, String data) {
         switch (number) {
             case 0 -> client.setName(data);
             case 1 -> client.setAddress(data);

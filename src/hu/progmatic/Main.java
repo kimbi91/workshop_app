@@ -26,7 +26,7 @@ public class Main {
                 break;
             }
 
-            List<SavedData> newData;
+            List<Object> newData;
 
             switch (command.toLowerCase(Locale.ROOT)) {
                 case "help" -> Controller.helpCommand();

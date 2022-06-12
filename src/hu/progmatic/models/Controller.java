@@ -20,13 +20,13 @@ public class Controller {
         );
     }
 
-    public static List<SavedData> createCommand() {
+    public static List<Object> createCommand() {
 
         Scanner sc = new Scanner(System.in);
         Client newClient = new Client(createNewClientId());
         TyreSet newTyreSet = new TyreSet();
         StoredSet newStoredSet = new StoredSet();
-        List<SavedData> newData = new ArrayList<>();
+        List<Object> newData = new ArrayList<>();
 
 
         for (int i = 0; i < 13; i++) {
@@ -55,12 +55,12 @@ public class Controller {
         return newData;
     }
 
-    public static void sortNewData(List<Client> clientList, List<TyreSet> tyreSetList, List<StoredSet> storedSetList, List<SavedData> newData) {
+    public static void sortNewData(List<Client> clientList, List<TyreSet> tyreSetList, List<StoredSet> storedSetList, List<Object> newData) {
 
-        Iterator<SavedData> itr = newData.iterator();
+        Iterator<Object> itr = newData.iterator();
 
         while (itr.hasNext()) {
-            SavedData current = itr.next();
+            Object current = itr.next();
 
             if (current.getClass().getSimpleName().equalsIgnoreCase("client")) {
                 clientList.add((Client) current);

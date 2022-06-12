@@ -1,6 +1,6 @@
 package hu.progmatic.models;
 
-public class TyreSet implements SavedData{
+public class TyreSet {
 
     private Client owner;
     private boolean isWheel;

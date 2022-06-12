@@ -41,10 +41,6 @@ public class Main {
             }
         }
 
-        System.out.println(savedClientData.size());
-        System.out.println(savedTyreSetData.size());
-        System.out.println(savedStoredSetData.size());
-
         System.out.println("Viszlát!");
 
     }

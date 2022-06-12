@@ -58,16 +58,18 @@ public class Controller {
     public static void sortNewData(List<Client> clientList, List<TyreSet> tyreSetList, List<StoredSet> storedSetList, List<SavedData> newData) {
 
         Iterator<SavedData> itr = newData.iterator();
-        int index = 0;
 
         while (itr.hasNext()) {
             SavedData current = itr.next();
 
-            //TODO
-            // ki kell találni hogy megy ez xD
+            if (current.getClass().getSimpleName().equalsIgnoreCase("client")) {
+                clientList.add((Client) current);
+            } else if (current.getClass().getSimpleName().equalsIgnoreCase("tyreset")) {
+                tyreSetList.add((TyreSet) current);
+            } else {
+                storedSetList.add((StoredSet) current);
+            }
 
-
-            itr.next();
             itr.remove();
         }
 
